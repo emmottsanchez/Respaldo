@@ -1,0 +1,146 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Site.master.vb" Inherits="WebApp.Site" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <link href="Estilos.css" rel="stylesheet" />
+    <link href="ControlesEstandar.css" rel="stylesheet" />
+
+    <!-- JQuery -->
+    <link href="jquery/css/smoothness/jquery-ui.css" rel="stylesheet" />
+    <link href="jquery/css/smoothness/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
+    <link href="jquery/css/smoothness/ajustes.css" rel="stylesheet" />
+    <script src="jquery/js/jquery-1.9.1.js"></script>
+    <script src="jquery/js/jquery-ui.min.js"></script>
+
+    <script>
+        function MostrarMensaje() {
+            var selectedEffect = 'slide';
+            var options = {};
+            var msDesplegar = 500;
+            var msMantener = 3000;
+            var msOcultar = 500;
+
+            $("#Mensaje1").show(selectedEffect, options, msDesplegar);
+
+            setTimeout(function () {
+                $("#Mensaje1").hide(selectedEffect, options, msOcultar);
+            }, msMantener);
+        };
+
+        $(function () {
+            $(".datepickered").datepicker();
+        });
+      </script>
+
+    <title>Experiencia Comercial</title>
+
+    <asp:ContentPlaceHolder ID="cphHeader" runat="server" />
+
+</head>
+<body>
+    <form id="form1" runat="server">
+        
+    <asp:Panel runat="server" ID="panEncabezado">
+        
+        <div id="Encabezado">        
+            <table style="width:100%; background-color:#ff7204; border-collapse: collapse; " >
+                <tr>
+                    <td style="width:20px" ></td>
+                    <td style="width:90px; text-align:center; padding:0px; background-color:white"   >
+                        <img src="../Imagenes/logoTr.png" height:"90px" style="vertical-align: bottom;"  />
+                    </td>
+                    <td style="width:20px" ></td>
+                    <td>
+                        <asp:Label ID="Label1" runat="server" Font-Size="25px">CCAF Los Héroes</asp:Label><br />
+                        <asp:Label ID="Label2" runat="server" Font-Size="15px">Panel Experiencia Comercial</asp:Label>                
+                    </td>                    
+                    <td style="width:235px; text-align:right; text-align:right" >
+                        <asp:Label runat="server" ID="lblPeriodo" Text="Período" Visible="false" Font-Size="15px" />
+                        <asp:DropDownList runat="server" ID="ddlPeriodo" CssClass="ddlEstandar" Visible="false" AutoPostBack="true" /><br />
+                        </td><td><asp:label runat="server" ID="lblFechaDatos" Font-Size="10px" />
+                    </td>          
+                    <td></td>
+                    <td>
+                    </td>
+                    <td style="width:200px; text-align:center">                        
+                        <asp:Label runat="server" ID="lblContacto" Font-Size="9px" >
+                            <strong>Accesos y Consultas</strong><br />
+                            Nicolás Lucero V. - Anexo 8162 <br />
+                            Max Castro V. - Anexo 8217
+                        </asp:Label>
+                    </td>    
+                    
+                     
+                    <td style="width:52px">
+                        <img src="../Imagenes/Expertin100x100.png" width="78px" height="78px" style="vertical-align: bottom;" />
+                    </td>                                                         
+                </tr>            
+            </table>
+
+        </div>
+        
+    </asp:Panel>
+        
+    <asp:Panel runat="server" ID="Menu" defaultbutton="btnIniciarSesion" style="margin-left:10px">
+        <asp:Table runat="server" ID="tbUsuario" Width="100%">
+            <asp:TableRow Height="40px">                
+                <asp:TableCell HorizontalAlign="Left" ColumnSpan="2">
+                    <asp:Panel runat="server" ID="IniciarSesion">
+                        Email&nbsp;&nbsp;
+                        <asp:TextBox ID="tbEmail" runat="server" CssClass="txtEstandar" Width="250px"></asp:TextBox>
+                        <asp:CheckBox ID="cbGuardarEmail" runat="server" Text="Guardar" Checked="True" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        Contraseña&nbsp;&nbsp;                                                
+                        <asp:TextBox ID="tbContraseña" runat="server" CssClass="txtEstandar" TextMode="Password" Width="100px"></asp:TextBox>&nbsp;&nbsp;
+                        <asp:Button ID="btnIniciarSesion" runat="server" cssClass="btnEstandar" Height="20px" Text="Ingresar" />
+                        &nbsp;&nbsp;
+                        <asp:Label ID="lblMsg0" runat="server" ForeColor="Red" Font-Size="11px"  Font-Bold="true"></asp:Label>
+                    </asp:Panel>
+                </asp:TableCell>
+            </asp:TableRow>
+
+            <asp:TableRow Visible="false">
+                <asp:TableCell>
+                    <asp:Button ID="btnPrincipal" runat="server" CssClass="BotonMenu" Text="Inicio" />
+                    <asp:Button ID="btnIndicadores" runat="server" CssClass="BotonMenu" Text="Tablero Comercial" Width="155px" />                    
+                    <asp:Button ID="btnAfiliacionesCanal" runat="server" CssClass="BotonMenu" Text="Afiliaciones por Canal" Width="155px" />
+                    <asp:Button ID="btnCoachings" runat="server" CssClass="BotonMenu" Text="Coaching" />
+                </asp:TableCell>
+
+                <asp:TableCell HorizontalAlign="Right"  Width="450px">
+                    <asp:Panel runat="server" ID="panSesion">
+                        <asp:Label ID="lblUsuarioSesion" runat="server" Text="(Nombre Usuario)" CssClass="lblEstandar"></asp:Label>&nbsp;&nbsp;                        
+                        <asp:Button ID="btnCerrarSesion" runat="server" Text="Cerrar Sesión" cssClass="btnEstandar" width="80px" Height="20px" style="margin-right:60px" />
+                    </asp:Panel>
+                </asp:TableCell>            
+            </asp:TableRow>
+        </asp:Table>    
+    </asp:Panel>            
+
+    <div id="Cuerpo">
+        <asp:ContentPlaceHolder ID="cphPrincipal" runat="server">        
+        </asp:ContentPlaceHolder>
+        <br /><br /><br /> <br /> <br />
+    </div>
+    <footer>        
+        <table style="width:100%">
+            <tr>
+                <td style="text-align:left; vertical-align:middle">
+                    <p>&copy;2016 Gerencia Comercial</td>
+                <td style="text-align:right">
+                    <img src="Imagenes/logo_footer.png" width="250px" align="right" style="margin-right:25px;"/>
+                </td>
+            </tr>
+        </table>                                 
+    </footer>
+
+
+    <asp:Label ID="lblInfoTec" runat="server" Font-Names="Verdana" Font-Size="X-Small" ForeColor="gray"></asp:Label>  
+    </form>
+</body>
+</html>
+
