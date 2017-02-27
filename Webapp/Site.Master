@@ -1,0 +1,157 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Site.master.vb" Inherits="Webapp.Site" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Panel PEC</title>
+
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
+    
+    <link rel="icon" type="image/png" href="assets/icon.png" />
+
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/jquery-1.8.3.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+
+      <script>
+        function ventanaSecundaria(URL) {
+            window.open(URL, "ventana1", "width=610,height=460,scrollbars=NO")
+        }
+        function CambiarContraseña() {
+            alert("Debes Cambiar Contraseña");
+            document.getElementById("lnkCambio").click();
+        }
+        window.onload = function redireccionar() {
+            document.getElementById("tbUsuario").focus();
+            var chrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+            if (chrome) {
+            } else {
+                alert("No esta utilizando navegador Chrome ")
+                location.href = "Nopagina.aspx";
+            }
+        }
+
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+        });
+
+        function checkLength() {
+            var textbox = document.getElementById("txtContraseña1");
+            if (textbox.value.length > 5) {
+            }
+            else {
+                alert("Contraseña debe tener como mínimo 6 dígitos.")
+            }
+        }
+      </script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+
+    <form id="form1" runat="server" DefaultButton="btnAcceder">
+    <div>
+     <header>
+         <div id="banner">
+			<img src="assets/img/logo_circulo_Com.png" style="height:140px;margin-left:40px;"/>
+                 <b>PEC</b>
+		</div>
+    </header>
+        <!-- -->
+         <div id="navheroes">
+         	 
+             	<ul class="nav navbar-nav pull-right" style="margin-top:15px; margin-right:30px">
+                     <li><asp:Label runat="server" ID="lblUser"></asp:Label></li>
+                     <!--<li><asp:LinkButton ID="btnInicio" runat="server">Inicio</asp:LinkButton></li>-->
+                     <li><asp:LinkButton ID="btnPagoIncentivo" runat="server">Pago de Incentivos</asp:LinkButton></li>
+                     <!--<li><asp:LinkButton ID="btnMantenedor" runat="server" >Mantenedores</asp:LinkButton></li>-->
+                     <!--<li><asp:LinkButton ID="btnGraficos" runat="server" >Gráficos</asp:LinkButton></li>-->
+				</ul>
+
+     </div><br />
+        <div id="resto">
+
+              <asp:Panel ID="Pan_Logout" runat="server" Visible="true">
+            <div id="logoutdiv">
+               <asp:Label runat="server" ID="lblUsuarioRegistrado2"></asp:Label>
+                <asp:Button ID="btnSalir" runat="server" Text="Cerrar Sesión" class="btn btn-danger" />
+            </div>
+            </asp:Panel>
+
+              <asp:Panel ID="Pan_Log" runat="server">
+                  <div style="margin:0 auto 0 auto; width:512px">
+       <h1 style="margin-left:160px"> Bienvenido</h1>
+
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;Para ingresar al panel sólo debes indicar tu rut y clave.</p>
+
+            <br />
+            <table>
+                <tr>
+                    <td align="center" style="width:150px; ">
+                       <p> Usuario</p>
+                    </td>
+                    <td>
+                        <asp:TextBox ID="tbUsuario" runat="server" class="form-control" type="number" data-toggle="popover" data-placement="right" data-content="Ingresar Rut sin guión ni dígito verificador" data-trigger="focus"></asp:TextBox>
+                    </td>
+
+                </tr>
+                <tr><td>&nbsp</td></tr>
+                <tr>
+
+                    <td align="center" style="width:150px; ">
+                        <p>Contraseña</p>
+                    </td>
+                    <td>
+                        <asp:TextBox ID="tbContraseña" runat="server" class="form-control" TextMode="Password" data-toggle="popover" data-placement="right"  data-content="Ingresar los primeros 6 dígitos del Rut" data-trigger="focus"></asp:TextBox>
+                    </td>
+                </tr>
+
+                
+                <tr>
+
+                    <td align="center" style="width:150px; ">
+                        <p></p>
+                    </td>
+                  
+                    </tr>
+                <tr style="height:55px">
+
+                    <td align="center" style="width:150px; ">
+                        
+                    </td>
+                    <td align="center">
+                        
+                        <asp:Button ID="btnAcceder" class="btn btn-primary" runat="server" Text="Ingresar" />
+                    </td>
+                </tr>
+            </table>
+                <center><p><asp:Label id="lblError" runat="server" Font-Bold="true" ForeColor="red" Font-Size="13px"></asp:Label></p>
+                      </center>
+                     <div class="panel panel-default" style="width:95%">
+                      <div class="panel-body">
+                          <center><u><asp:Label runat="server" font-size="18px" Font-Bold="true" Text="Instrucciones"></asp:Label></u></center>
+                          &nbsp;<asp:Label runat="server" font-size="15px" Font-Bold="true" Text="Usuario: "></asp:Label><asp:Label runat="server" font-size="15px" Text="Ingresar Rut sin guión ni dígito verificador."></asp:Label><br />
+                          &nbsp;<asp:Label runat="server" font-size="15px" Font-Bold="true" Text="Contraseña: "></asp:Label><asp:Label runat="server" font-size="15px" Text="Primeros 6 dígitos del Rut."></asp:Label><br />
+                          &nbsp;<asp:Label runat="server" font-size="15px" Font-Bold="true" Text="Dudas o Consultas contactarse con:"></asp:Label>&nbsp;<asp:Label runat="server" font-size="14px" Text="Carlos Emmott Anexo 8195"></asp:Label>
+                      </div></div>
+                      </div>
+        </asp:Panel>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+            </div>
+
+         <%---Footer ---%>
+        <footer>
+        
+             <p>&copy;2016 Gerencia Comercial
+           <img src="assets/img/logo_footer.png" width="250px" align="right" style="margin-right:25px;"/>
+           </p>
+            </footer>
+    </div>
+    </form>
+</body>
+</html>
